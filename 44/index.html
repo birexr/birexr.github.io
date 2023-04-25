@@ -5,7 +5,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
-    <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
   </head>
   <body>
     mergeInto(LibraryManager.library, {
@@ -23,6 +22,7 @@
         <div id="unity-fullscreen-button"></div>
       </div>
     </div>
+    <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
     <script>
       vkBridge.send("VKWebAppInit");
       
@@ -42,6 +42,17 @@
 },  
     </script>
     <script>
+      <script>
+      
+      import bridge from '@vkontakte/vk-bridge';
+
+// Sends event to client
+bridge.send('VKWebAppInit');
+
+// Subscribes to event, sended by client
+bridge.subscribe(e => console.log(e));
+      
+      
       var container = document.querySelector("#unity-container");
       var canvas = document.querySelector("#unity-canvas");
       var loadingBar = document.querySelector("#unity-loading-bar");
