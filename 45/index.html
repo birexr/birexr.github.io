@@ -16,15 +16,17 @@
 
       function callMethodWallPost() // вызываем метод ВК
       {
-        bridge.send('VKWebAppShowNativeAds', { ad_format: 'interstitial' })
-  .then((data) => {
-    if (data.result)
-      
-      console.log('Реклама показана');
-    
-  })
-  .catch((error) => { console.log(error); /* Ошибка */ });
+  // Показать рекламу
+  bridge.send('VKWebAppShowNativeAds', { ad_format: 'reward' })
+    .then((data) => {
+      if (data.result) // Успех
+        console.log('Реклама показана');
+      else // Ошибка 
+        console.log('Ошибка при показе');
+    })
+    .catch((error) => { console.log(error); /* Ошибка */ });
 }
+   
 
       
 
