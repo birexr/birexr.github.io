@@ -16,19 +16,15 @@
 
       function callMethodWallPost() // вызываем метод ВК
       {
-        vkBridge.send('VKWebAppShowWallPostBox', {
-          message: 'Привет! https://vk.com/app51625593'
-          })
-          .then((data) => {
-            if (data.post_id) {
-             // console.log ("ok"); // Запись размещена
-              unityInstance.SendMessage('ConnectJs', 'ResponseOk');
-            }
-          })
-          .catch((error) => {
-            console.log(error); // Ошибка
-            unityInstance.SendMessage('ConnectJs', 'ResponseError');
-          });
+        bridge.send('VKWebAppShowNativeAds', { ad_format: 'interstitial' })
+  .then((data) => {
+    if (data.result)
+      MyGameInstance.SendMessage('Yandex', 'Coins')
+      console.log('Реклама показана');
+    
+  })
+  .catch((error) => { console.log(error); /* Ошибка */ });
+},
 
       }
 
