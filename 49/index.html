@@ -6,6 +6,29 @@
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
     <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
+    <script>
+
+      function FromUnityToJs ()   // функция вызывается из Unity
+      {
+         callMethodWallPost();
+      }
+
+      function callMethodWallPost() // вызываем метод ВК
+      {
+        vkBridge.send('VKWebAppShowWallPostBox', {message: 'Привет'})
+          .then((data) => {
+            if (data.post_id) {
+             // console.log ("ok"); // Запись размещена
+              unityInstance.SendMessage('ConnectJs', 'ResponseOk');
+            }
+          })
+          .catch((error) => {
+            console.log(error); // Ошибка
+            unityInstance.SendMessage('ConnectJs', 'ResponseError');
+          });
+
+      }
+    </script>
   </head>
   <body>
     <div id="unity-container" style = "position: absolute; width: 100%; height: 100%; left: 0%; top: 0%;">
