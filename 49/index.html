@@ -5,7 +5,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
     <script>
 
@@ -29,14 +28,9 @@
           });
 
       }
-
-      var unityInstance = UnityLoader.instantiate("unityContainer", "Build/Lesson_build.json", {onProgress: UnityProgress}); // запуск unity на странице
-
-      jQuery(document).ready(function($) // страница прогружена
-      {
-            vkBridge.send('VKWebAppInit'); // Инициализация ВК
-      });
-
+    </script>
+    <script>
+    vkBridge.send('VKWebAppInit'); // Инициализация ВК
     </script>
   </head>
   <body>
