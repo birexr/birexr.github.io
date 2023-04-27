@@ -6,35 +6,8 @@
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
     <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
-    <body>
-    <script>
-  // Отправляет событие инициализации нативному клиенту
-  vkBridge.send('VKWebAppInit');
-</script>
-    <script>
-
-      function FromUnityToJs ()   // функция вызывается из Unity
-      {
-         callMethodWallPost();
-      }
-
-      function callMethodWallPost() // вызываем метод ВК
-      {
-        vkBridge.send('VKWebAppShowWallPostBox', {message: 'Привет'})
-          .then((data) => {
-            if (data.post_id) {
-             // console.log ("ok"); // Запись размещена
-              unityInstance.SendMessage('ConnectJs', 'ResponseOk');
-            }
-          })
-          .catch((error) => {
-            console.log(error); // Ошибка
-            unityInstance.SendMessage('ConnectJs', 'ResponseError');
-          });
-
-      }
-    </script>
   </head>
+  <body>
     <div id="unity-container" style = "position: absolute; width: 100%; height: 100%; left: 0%; top: 0%;">
       <canvas id="unity-canvas" style = "position: absolute; width: 100%; height: 100%;"></canvas>
       <div id="unity-loading-bar">
@@ -49,7 +22,9 @@
         <div id="unity-fullscreen-button"></div>
       </div>
     </div>
-    
+    <script>
+      vkBridge.send("VKWebAppInit", {});
+    </script>
     <script>
       var container = document.querySelector("#unity-container");
       var canvas = document.querySelector("#unity-canvas");
@@ -87,7 +62,7 @@
       var config = {
         dataUrl: buildUrl + "/49.data.unityweb",
         frameworkUrl: buildUrl + "/49.framework.js.unityweb",
-        codeUrl: buildUrl + "/49.wasm.unityweb",
+        codeUrl: buildUrl + "/40.wasm.unityweb",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "oyshi",
         productName: "NadiKota",
@@ -142,3 +117,4 @@
     </script>
   </body>
 </html>
+
