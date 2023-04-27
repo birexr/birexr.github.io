@@ -6,6 +6,11 @@
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
     <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
+    <body>
+    <script>
+  // Отправляет событие инициализации нативному клиенту
+  vkBridge.send('VKWebAppInit');
+</script>
     <script>
 
       function FromUnityToJs ()   // функция вызывается из Unity
@@ -30,11 +35,6 @@
       }
     </script>
   </head>
-  <body>
-    <script>
-  // Отправляет событие инициализации нативному клиенту
-  vkBridge.send('VKWebAppInit');
-</script>
     <div id="unity-container" style = "position: absolute; width: 100%; height: 100%; left: 0%; top: 0%;">
       <canvas id="unity-canvas" style = "position: absolute; width: 100%; height: 100%;"></canvas>
       <div id="unity-loading-bar">
